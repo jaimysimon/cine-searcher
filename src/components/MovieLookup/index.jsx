@@ -39,7 +39,7 @@ const MovieLookup = () => {
   };
 
   return (
-    <div className="p-10">
+    <div className="-mt-4 p-10">
       <Input
         placeholder={t("placeholders.searchForMoviesOrSeries")}
         prefix={<Search />}

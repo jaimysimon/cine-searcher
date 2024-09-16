@@ -1,38 +1,17 @@
-import History from "components/History";
-import MovieLookup from "components/MovieLookup";
-import { ReactQueryDevtools } from "react-query/devtools";
+import Header from "components/commons/Header";
+import Home from "components/Home";
+import { Route, Switch } from "react-router-dom";
+import routes from "routes";
 
 const App = () => (
-  <>
-    <div className="flex h-screen">
-      <div className="h-full w-2/3 p-4">
-        <MovieLookup />
-      </div>
-      <div className="flex items-center justify-center">
-        <div className="divider neeto-ui-bg-gray-300 w-px" />
-      </div>
-      <div className="h-full w-1/3 p-4">
-        <History />
-      </div>
-    </div>
-    <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
-    {/* <Switch>
-      <Route exact component={Product} path={routes.products.show} />
-      <Route exact component={ProductList} path={routes.products.index} />
-      <Route exact component={Cart} path={routes.cart} />
-      <Route exact component={Checkout} path={routes.checkout} />
-      <Redirect
-        exact
-        from={routes.root}
-        to={buildUrl(routes.products.index, {
-          page: DEFAULT_PAGE_INDEX,
-          page_size: DEFAULT_PAGE_SIZE,
-        })}
-      />
-      <Route component={PageNotFound} path="*" />
+  <div className="flex h-screen flex-col ">
+    <Header />
+    <Switch>
+      {/* <Route exact component={SearchHistory} path={routes.searchHistory} />
+      <Route exact component={Favourites} path={routes.cart} /> */}
+      <Route exact component={Home} path={routes.root} />
     </Switch>
-    <ReactQueryDevtools initialIsOpen={false} position="bottom-right" /> */}
-  </>
+  </div>
 );
 
 export default App;

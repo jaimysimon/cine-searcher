@@ -18,6 +18,7 @@ const History = () => {
     if (lastSelectedMovieId && highlightedMovieRef.current) {
       highlightedMovieRef.current.scrollIntoView({
         behavior: "smooth",
+        block: "nearest",
       });
     }
   }, [lastSelectedMovieId]);
@@ -33,13 +34,13 @@ const History = () => {
       ) : (
         <>
           <Typography
-            className=" mt-5 text-center"
+            className=" mt-1 text-center"
             style="body1"
             weight="semibold"
           >
-            {t("headings.viewHistory")}
+            {t("headings.browsedMoviesOrSeries")}
           </Typography>
-          <div className="mt-5 flex-grow overflow-y-auto">
+          <div className="mt-4 h-full flex-grow overflow-y-auto">
             {clickedMovies.map(({ imdbId, title }) => {
               const movieClass = classNames(
                 "neeto-ui-rounded-lg",
