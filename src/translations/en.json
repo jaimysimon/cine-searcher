@@ -7,6 +7,10 @@
   "placeholders": {
     "searchForMoviesOrSeries": "Search series, movies or more"
   },
+  "tooltips": {
+    "star": "Add to favourites",
+    "unStar": "Remove from favourites"
+  },
   "label": {
     "viewDetails": "View details ",
     "year": "<label>Year:</label> {{entity}}",

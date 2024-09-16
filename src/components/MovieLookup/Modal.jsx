@@ -1,10 +1,23 @@
 import { useShowMovie } from "hooks/reactQuery/useMoviesApi";
+import { existsBy } from "neetocist";
 import { isNotEmpty } from "neetocommons/pure";
-import { Modal as NeetoUIModal, Typography, Spinner, Tag } from "neetoui";
+import { Rating, RatingFilled } from "neetoicons";
+import {
+  Modal as NeetoUIModal,
+  Typography,
+  Spinner,
+  Tag,
+  Button,
+} from "neetoui";
+import { prop } from "ramda";
+import { useTranslation } from "react-i18next";
+import useMovieStore from "stores/useMovieStore";
 
 import LabeledDetail from "../commons/LabeledDetail";
 
 const Modal = ({ isOpen, onClose, imdbID }) => {
+  const { t } = useTranslation();
+
   const { Header, Body } = NeetoUIModal;
 
   const { isLoading, data: movie = {} } = useShowMovie(imdbID);
@@ -23,13 +36,47 @@ const Modal = ({ isOpen, onClose, imdbID }) => {
   } = movie;
 
   const genres = Genre ? Genre.split(", ") : [];
+  const addMovieToFavourites = useMovieStore(prop("addMovieToFavourites"));
+  const removeMovieFromFavourites = useMovieStore(
+    prop("removeMovieFromFavourites")
+  );
+  const favouriteMovies = useMovieStore(prop("favouriteMovies"));
 
   return (
     <NeetoUIModal size="large" {...{ isOpen, onClose }}>
       <Header>
-        <Typography style="h2" weight="bold">
-          {Title}
-        </Typography>
+        {isNotEmpty(movie) && (
+          <Typography style="h2" weight="bold">
+            {Title}
+            {existsBy({ imdbId: imdbID }, favouriteMovies) ? (
+              <Button
+                className="outline-none bg-transparent"
+                size="large"
+                style="text"
+                tooltipProps={{ content: t("tooltips.unStar") }}
+                icon={() => (
+                  <RatingFilled className="neeto-ui-text-gray-800" size={15} />
+                )}
+                onClick={() => removeMovieFromFavourites(imdbID)}
+              />
+            ) : (
+              <Button
+                className="outline-none bg-transparent"
+                icon={() => <Rating className="cursor-pointer" size={15} />}
+                size="large"
+                style="text"
+                tooltipProps={{ content: t("tooltips.star") }}
+                onClick={() =>
+                  addMovieToFavourites({
+                    imdbId: imdbID,
+                    title: Title,
+                    poster: Poster,
+                  })
+                }
+              />
+            )}
+          </Typography>
+        )}
         {isNotEmpty(genres) &&
           genres.map(genre => (
             <Tag className="my-3 mr-2" key={genre} type="solid">

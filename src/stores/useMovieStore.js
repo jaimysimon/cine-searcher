@@ -1,4 +1,4 @@
-import { existsBy } from "neetocist";
+import { existsBy, removeBy } from "neetocist";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -8,6 +8,7 @@ const useMovieStore = create(
       selectedMovieId: "",
       lastSelectedMovieId: "",
       clickedMovies: [],
+      favouriteMovies: [],
 
       setSelectedMovieId: selectedMovieId => set({ selectedMovieId }),
       setLastSelectedMovieId: lastSelectedMovieId =>
@@ -23,6 +24,22 @@ const useMovieStore = create(
 
           return { clickedMovies };
         }),
+      addMovieToFavourites: ({ imdbId, title, poster }) =>
+        set(({ favouriteMovies }) => {
+          const isMoviePresent = existsBy({ imdbId }, favouriteMovies);
+
+          if (!isMoviePresent) {
+            return {
+              favouriteMovies: [{ imdbId, title, poster }, ...favouriteMovies],
+            };
+          }
+
+          return { favouriteMovies };
+        }),
+      removeMovieFromFavourites: imdbId =>
+        set(({ favouriteMovies }) => ({
+          favouriteMovies: removeBy({ imdbId }, favouriteMovies),
+        })),
     }),
     { name: "movie-history-store" }
   )
