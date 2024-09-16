@@ -3,8 +3,8 @@ import { useState } from "react";
 import { useFetchMovies } from "hooks/reactQuery/useMoviesApi";
 import useDebounce from "hooks/useDebounce";
 import useQueryParams from "hooks/useQueryParams";
-import { Search } from "neetoicons";
-import { Input } from "neetoui";
+import { Search, Filter } from "neetoicons";
+import { Input, Button } from "neetoui";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import routes from "routes";
@@ -40,13 +40,21 @@ const MovieLookup = () => {
 
   return (
     <div className="-mt-4 p-10">
-      <Input
-        placeholder={t("placeholders.searchForMoviesOrSeries")}
-        prefix={<Search />}
-        type="search"
-        value={searchInputValue}
-        onChange={({ target: { value } }) => handleChange(value)}
-      />
+      <div className="flex flex-row">
+        <Input
+          placeholder={t("placeholders.searchForMoviesOrSeries")}
+          prefix={<Search />}
+          type="search"
+          value={searchInputValue}
+          onChange={({ target: { value } }) => handleChange(value)}
+        />
+        <Button
+          className="outline-none -mr-5 bg-transparent"
+          icon={() => <Filter className="neeto-ui-text-gray-800" size={20} />}
+          size="large"
+          style="text"
+        />
+      </div>
       <List movies={limitedMovies} />
     </div>
   );

@@ -7,7 +7,7 @@ const Favourites = () => {
   const favouriteMovies = useMovieStore(prop("favouriteMovies"));
 
   return (
-    <div className="flex flex-col items-center justify-center gap-5 p-10">
+    <div className="mt-6 flex h-full flex-wrap items-center justify-center gap-4">
       {favouriteMovies.map(({ imdbId, poster, title }) => (
         <Card key={imdbId} {...{ poster, title }} />
       ))}
