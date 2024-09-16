@@ -1,12 +1,31 @@
-import { withImmutableActions } from "neetocommons/react-utils";
+import { existsBy } from "neetocist";
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
-/** @type {import("neetocommons/react-utils").ZustandStoreHook} */
 const useMovieStore = create(
-  withImmutableActions(set => ({
-    selectedMovieId: "",
-    setSelectedMovieId: selectedMovieId => set({ selectedMovieId }),
-  }))
+  persist(
+    set => ({
+      selectedMovieId: "",
+      lastSelectedMovieId: "",
+      clickedMovies: [],
+
+      setSelectedMovieId: selectedMovieId => set({ selectedMovieId }),
+      setLastSelectedMovieId: lastSelectedMovieId =>
+        set({ lastSelectedMovieId }),
+
+      addMovieToHistory: ({ imdbId, title }) =>
+        set(({ clickedMovies }) => {
+          const isMoviePresent = existsBy({ imdbId }, clickedMovies);
+
+          if (!isMoviePresent) {
+            return { clickedMovies: [{ imdbId, title }, ...clickedMovies] };
+          }
+
+          return { clickedMovies };
+        }),
+    }),
+    { name: "movie-history-store" }
+  )
 );
 
 export default useMovieStore;

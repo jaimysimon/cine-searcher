@@ -2,23 +2,32 @@ import { useState } from "react";
 
 import { capitalize } from "neetocommons/pure";
 import { Button, Typography } from "neetoui";
+import { prop } from "ramda";
 import { useTranslation } from "react-i18next";
+import useMovieStore from "stores/useMovieStore";
 
 import Modal from "./Modal";
 
 const Card = ({ imdbID, poster, title, year, type }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedImdbID, setSelectedImdbID] = useState("");
+
   const { t } = useTranslation();
 
+  const selectedMovieId = useMovieStore(prop("selectedMovieId"));
+  const setSelectedMovieId = useMovieStore(prop("setSelectedMovieId"));
+  const setLastSelectedMovieId = useMovieStore(prop("setLastSelectedMovieId"));
+  const addMovieToHistory = useMovieStore(prop("addMovieToHistory"));
+
   const handleViewDetails = id => {
-    setSelectedImdbID(id);
+    setSelectedMovieId(id);
+    setLastSelectedMovieId(id);
+    addMovieToHistory({ imdbId: id, title });
     setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    setSelectedImdbID("");
+    setSelectedMovieId("");
   };
 
   return (
@@ -52,7 +61,7 @@ const Card = ({ imdbID, poster, title, year, type }) => {
         </div>
       </div>
       <Modal
-        imdbID={selectedImdbID}
+        imdbID={selectedMovieId}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
       />

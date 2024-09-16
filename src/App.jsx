@@ -1,3 +1,4 @@
+import History from "components/History";
 import MovieLookup from "components/MovieLookup";
 import { ReactQueryDevtools } from "react-query/devtools";
 
@@ -10,8 +11,8 @@ const App = () => (
       <div className="flex items-center justify-center">
         <div className="divider neeto-ui-bg-gray-300 w-px" />
       </div>
-      <div className="w-1/3 p-4">
-        <p>history component</p>
+      <div className="h-full w-1/3 p-4">
+        <History />
       </div>
     </div>
     <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />

@@ -1,6 +1,9 @@
 {
   "title": "Cine Searcher",
   "pageTitle": "{{title}} | Cine Searcher",
+  "headings": {
+    "viewHistory": "View history"
+  },
   "placeholders": {
     "searchForMoviesOrSeries": "Search series, movies or more"
   },
@@ -15,7 +18,8 @@
     "rated": "<label>Rated:</label> {{entity}}"
   },
   "messages": {
-    "releasedYear": "Released in <span>{{year}}</span>"
+    "releasedYear": "Released in <span>{{year}}</span>",
+    "noHistoryFound": " No history found"
   },
   "error": {
     "noInternetConnection": "No Internet Connection",
