@@ -5,7 +5,14 @@
     "searchForMoviesOrSeries": "Search series, movies or more"
   },
   "label": {
-    "viewDetails": "View details "
+    "viewDetails": "View details ",
+    "year": "<label>Year:</label> {{entity}}",
+    "actors": "<label>Actors:</label> {{entity}}",
+    "director": "<label>Director:</label> {{entity}}",
+    "boxOffice": "<label>Box Office:</label> {{entity}}",
+    "runtime": "<label>Runtime:</label> {{entity}}",
+    "language": "<label>Language:</label> {{entity}}",
+    "rated": "<label>Rated:</label> {{entity}}"
   },
   "messages": {
     "releasedYear": "Released in <span>{{year}}</span>"

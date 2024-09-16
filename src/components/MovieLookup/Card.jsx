@@ -41,6 +41,7 @@ const Card = ({ imdbID, poster, title, year, type }) => {
           <div className="mt-auto flex items-center justify-between">
             <Button
               className="neeto-ui-rounded-full neeto-ui-bg-gray-100 neeto-ui-text-gray-800 hover:neeto-ui-bg-gray-200 px-3 py-1 text-xs font-semibold"
+              style="secondary"
               onClick={() => handleViewDetails(imdbID)}
             >
               <Typography className="neeto-ui-text-primary-800 text-xs">
