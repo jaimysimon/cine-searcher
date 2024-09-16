@@ -3,13 +3,17 @@ import { t } from "i18next";
 import { keysToCamelCase, serializeKeysToSnakeCase } from "neetocist";
 import { Toastr } from "neetoui";
 import { evolve } from "ramda";
-import { SMILE_CART_BASE_URL } from "src/constants";
+import { OMDB_API_URL, OMDB_API_KEY } from "src/constants";
 
 const setHttpHeaders = () => {
   axios.defaults.headers = {
     Accept: "application/json",
     "Content-Type": "application/json",
   };
+};
+
+const setDefaultParams = () => {
+  axios.defaults.params = { apikey: OMDB_API_KEY };
 };
 
 const shouldShowToastr = response =>
@@ -65,7 +69,8 @@ const registerIntercepts = () => {
 };
 
 export default function initializeAxios() {
-  axios.defaults.baseURL = SMILE_CART_BASE_URL;
+  axios.defaults.baseURL = OMDB_API_URL;
   setHttpHeaders();
+  setDefaultParams();
   registerIntercepts();
 }
