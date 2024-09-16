@@ -43,18 +43,6 @@ const Header = () => {
                 {t("menu.home")}
               </Link>
               <Link
-                to={routes.searchHistory}
-                className={classNames(
-                  "neeto-ui-text-gray-800 hover:neeto-ui-text-primary-600",
-                  {
-                    "neeto-ui-text-primary-600 hover:neeto-ui-text-gray-80":
-                      activeLink === routes.searchHistory,
-                  }
-                )}
-              >
-                {t("menu.searchHistory")}
-              </Link>
-              <Link
                 to={routes.favourites}
                 className={classNames(
                   "neeto-ui-text-gray-800 hover:neeto-ui-text-primary-600",

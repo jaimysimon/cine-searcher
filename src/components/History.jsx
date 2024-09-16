@@ -1,7 +1,8 @@
 import React, { useRef, useEffect } from "react";
 
 import classNames from "classnames";
-import { Typography } from "neetoui";
+import { Delete } from "neetoicons";
+import { Typography, Button } from "neetoui";
 import { isEmpty, prop } from "ramda";
 import { useTranslation } from "react-i18next";
 import useMovieStore from "stores/useMovieStore";
@@ -9,6 +10,8 @@ import useMovieStore from "stores/useMovieStore";
 const History = () => {
   const lastSelectedMovieId = useMovieStore(prop("lastSelectedMovieId"));
   const clickedMovies = useMovieStore(prop("clickedMovies"));
+  const removeMovieFromHistory = useMovieStore(prop("removeMovieFromHistory"));
+  const clearHistory = useMovieStore(prop("clearHistory"));
 
   const { t } = useTranslation();
 
@@ -33,20 +36,29 @@ const History = () => {
         </div>
       ) : (
         <>
-          <Typography
-            className=" mt-1 text-center"
-            style="body1"
-            weight="semibold"
-          >
-            {t("headings.browsedMoviesOrSeries")}
-          </Typography>
-          <div className="mt-4 h-full flex-grow overflow-y-auto">
+          <div className="flex items-center justify-between">
+            <Typography
+              className="ml-4 mt-1 text-center"
+              style="body1"
+              weight="semibold"
+            >
+              {t("headings.viewHistory")}
+            </Typography>
+            <Button
+              className="outline-none items-end bg-transparent"
+              label={t("label.clearAll")}
+              size="small"
+              style="danger-text"
+              tooltipProps={{
+                content: t("tooltips.deleteFromHistory"),
+              }}
+              onClick={clearHistory}
+            />
+          </div>
+          <div className="mt-4 h-full flex-grow overflow-y-auto ">
             {clickedMovies.map(({ imdbId, title }) => {
               const movieClass = classNames(
-                "neeto-ui-rounded-lg",
-                "m-2",
-                "p-1",
-                "font-medium",
+                "neeto-ui-rounded-lg m-2 p-2 font-medium flex items-center justify-between",
                 {
                   "neeto-ui-bg-primary-600 neeto-ui-text-white":
                     imdbId === lastSelectedMovieId,
@@ -63,9 +75,24 @@ const History = () => {
                     imdbId === lastSelectedMovieId ? highlightedMovieRef : null
                   }
                 >
-                  <Typography className="text-center" style="body3">
+                  <Typography
+                    className="ml-2 items-center text-center"
+                    style="body3"
+                  >
                     {title}
                   </Typography>
+                  <Button
+                    className="outline-none items-end bg-transparent"
+                    size="large"
+                    style="text"
+                    icon={() => (
+                      <Delete className="neeto-ui-text-gray-800" size={15} />
+                    )}
+                    tooltipProps={{
+                      content: t("tooltips.deleteFromHistory"),
+                    }}
+                    onClick={() => removeMovieFromHistory(imdbId)}
+                  />
                 </div>
               );
             })}

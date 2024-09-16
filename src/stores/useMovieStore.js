@@ -24,6 +24,14 @@ const useMovieStore = create(
 
           return { clickedMovies };
         }),
+
+      removeMovieFromHistory: imdbId =>
+        set(({ clickedMovies }) => ({
+          clickedMovies: removeBy({ imdbId }, clickedMovies),
+        })),
+
+      clearHistory: () => set(() => ({ clickedMovies: [] })),
+
       addMovieToFavourites: ({ imdbId, title, poster }) =>
         set(({ favouriteMovies }) => {
           const isMoviePresent = existsBy({ imdbId }, favouriteMovies);

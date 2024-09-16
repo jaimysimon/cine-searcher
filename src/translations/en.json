@@ -2,14 +2,15 @@
   "title": "<primary>Cine</primary> Searcher",
   "pageTitle": "{{title}} | Cine Searcher",
   "headings": {
-    "browsedMoviesOrSeries": "Browsed movies or series"
+    "viewHistory": "View history"
   },
   "placeholders": {
     "searchForMoviesOrSeries": "Search series, movies or more"
   },
   "tooltips": {
     "star": "Add to favourites",
-    "unStar": "Remove from favourites"
+    "unStar": "Remove from favourites",
+    "deleteFromHistory": "Delete from history"
   },
   "label": {
     "viewDetails": "View details ",
@@ -19,7 +20,8 @@
     "boxOffice": "<label>Box Office:</label> {{entity}}",
     "runtime": "<label>Runtime:</label> {{entity}}",
     "language": "<label>Language:</label> {{entity}}",
-    "rated": "<label>Rated:</label> {{entity}}"
+    "rated": "<label>Rated:</label> {{entity}}",
+    "clearAll": "Clear all"
   },
   "messages": {
     "releasedYear": "Released in <span>{{year}}</span>",

@@ -8,7 +8,6 @@ const App = () => (
   <div className="flex h-screen flex-col ">
     <Header />
     <Switch>
-      {/* <Route exact component={SearchHistory} path={routes.searchHistory} /> */}
       <Route exact component={Favourites} path={routes.favourites} />
       <Route exact component={Home} path={routes.root} />
     </Switch>
