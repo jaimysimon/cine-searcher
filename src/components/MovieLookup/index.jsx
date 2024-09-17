@@ -11,7 +11,7 @@ import { useHistory } from "react-router-dom";
 import routes from "routes";
 import { buildUrl } from "utils/url";
 
-import FilterPopup from "./FilterPopup ";
+import FilterPopup from "./FilterPopup";
 import List from "./List";
 
 const MovieLookup = () => {
