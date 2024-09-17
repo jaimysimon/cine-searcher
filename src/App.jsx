@@ -1,21 +1,22 @@
+import History from "components/History";
+import MovieLookup from "components/MovieLookup";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { Redirect, Route, Switch } from "react-router-dom";
-import routes from "routes";
-import { buildUrl } from "utils/url";
-
-import Cart from "./components/Cart";
-import Checkout from "./components/Checkout";
-import PageNotFound from "./components/commons/PageNotFound";
-import Product from "./components/Product";
-import ProductList from "./components/ProductList";
-import {
-  DEFAULT_PAGE_INDEX,
-  DEFAULT_PAGE_SIZE,
-} from "./components/ProductList/constants";
 
 const App = () => (
   <>
-    <Switch>
+    <div className="flex h-screen">
+      <div className="h-full w-2/3 p-4">
+        <MovieLookup />
+      </div>
+      <div className="flex items-center justify-center">
+        <div className="divider neeto-ui-bg-gray-300 w-px" />
+      </div>
+      <div className="h-full w-1/3 p-4">
+        <History />
+      </div>
+    </div>
+    <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+    {/* <Switch>
       <Route exact component={Product} path={routes.products.show} />
       <Route exact component={ProductList} path={routes.products.index} />
       <Route exact component={Cart} path={routes.cart} />
@@ -30,7 +31,7 @@ const App = () => (
       />
       <Route component={PageNotFound} path="*" />
     </Switch>
-    <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+    <ReactQueryDevtools initialIsOpen={false} position="bottom-right" /> */}
   </>
 );
 
