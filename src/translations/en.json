@@ -21,6 +21,7 @@
     "runtime": "<label>Runtime:</label> {{entity}}",
     "language": "<label>Language:</label> {{entity}}",
     "rated": "<label>Rated:</label> {{entity}}",
+    "rating": "<label>Rating:</label> {{entity}}/10",
     "clearAll": "Clear all"
   },
   "messages": {

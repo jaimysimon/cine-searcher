@@ -32,13 +32,13 @@ const useMovieStore = create(
 
       clearHistory: () => set(() => ({ clickedMovies: [] })),
 
-      addMovieToFavourites: ({ imdbId, title, poster }) =>
+      addMovieToFavourites: ({ imdbId, title, rating }) =>
         set(({ favouriteMovies }) => {
           const isMoviePresent = existsBy({ imdbId }, favouriteMovies);
 
           if (!isMoviePresent) {
             return {
-              favouriteMovies: [{ imdbId, title, poster }, ...favouriteMovies],
+              favouriteMovies: [{ imdbId, title, rating }, ...favouriteMovies],
             };
           }
 

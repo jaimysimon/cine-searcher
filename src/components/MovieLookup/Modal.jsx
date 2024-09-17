@@ -33,6 +33,7 @@ const Modal = ({ isOpen, onClose, imdbID }) => {
     Runtime,
     Language,
     Rated,
+    imdbRating,
   } = movie;
 
   const genres = Genre ? Genre.split(", ") : [];
@@ -70,7 +71,7 @@ const Modal = ({ isOpen, onClose, imdbID }) => {
                   addMovieToFavourites({
                     imdbId: imdbID,
                     title: Title,
-                    poster: Poster,
+                    rating: imdbRating,
                   })
                 }
               />
