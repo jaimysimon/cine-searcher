@@ -5,7 +5,8 @@
     "viewHistory": "View history"
   },
   "placeholders": {
-    "searchForMoviesOrSeries": "Search series, movies or more"
+    "searchForMoviesOrSeries": "Search series, movies or more",
+    "enterYear": "Enter year"
   },
   "tooltips": {
     "star": "Add to favourites",
@@ -22,7 +23,11 @@
     "language": "<label>Language:</label> {{entity}}",
     "rated": "<label>Rated:</label> {{entity}}",
     "rating": "<label>Rating:</label> {{entity}}/10",
-    "clearAll": "Clear all"
+    "clearAll": "Clear all",
+    "movie": "Movie",
+    "series": "Series",
+    "type": "Type",
+    "yearLabel": "Year"
   },
   "messages": {
     "releasedYear": "Released in <span>{{year}}</span>",

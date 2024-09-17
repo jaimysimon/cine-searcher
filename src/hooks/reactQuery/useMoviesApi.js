@@ -4,11 +4,15 @@ import moviesApi from "apis/movies";
 import { Toastr } from "neetoui";
 import { useQuery } from "react-query";
 
-export const useFetchMovies = searchTerm =>
+export const useFetchMovies = (searchTerm, year, types) =>
   useQuery({
-    queryKey: [QUERY_KEYS.MOVIES, searchTerm],
+    queryKey: [QUERY_KEYS.MOVIES, searchTerm, year, types],
     queryFn: async () => {
-      const params = { s: searchTerm };
+      const params = {
+        s: searchTerm,
+        y: year,
+        ...(types && types.length === 1 ? { type: types[0] } : {}),
+      };
       const response = await moviesApi.fetch(params);
 
       const { Response, Error } = response;
