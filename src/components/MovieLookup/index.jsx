@@ -11,7 +11,7 @@ import { useHistory } from "react-router-dom";
 import routes from "routes";
 import { buildUrl } from "utils/url";
 
-import FilterModal from "./FilterModal";
+import FilterPopup from "./FilterPopup ";
 import List from "./List";
 
 const MovieLookup = () => {
@@ -69,7 +69,7 @@ const MovieLookup = () => {
       </div>
       {isFilterModalOpen &&
         createPortal(
-          <FilterModal
+          <FilterPopup
             {...{ setType, setYear, type, year }}
             anchorRef={buttonRef}
             isOpen={isFilterModalOpen}
